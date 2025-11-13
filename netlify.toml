@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  environment = { PYTHON_VERSION = "3.12" }
+  ignore = "find . -type d -name '__tests__' -exec rm -rf {} +"  #remove tests from production deploy
+
+[functions]
+  directory = "netlify/functions"
