@@ -1,7 +1,11 @@
 .App {
-  text-align: center;
+  text-align: left;
+  /* background-image: url('beta_bg.png'); 
+  background-repeat: repeat; */
 }
-
+p.italics {
+  font-style: italic;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +39,90 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.provider-logo {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+  margin-bottom: -2px; /* fine-tune if needed */
+}
+.provider {
+  vertical-align: text-top;
+  padding-bottom: 5px; /* fine-tune if needed */
+  margin-top: -2px;
+}
+.review-link {
+  vertical-align: text-middle;
+  margin-top: -7px;
+  color: darkred;
+}
+.modal-backdrop {
+  background-color: lightgray; /* Replace with your desired color */
+}
+.modal-content {
+  background-color: #faeef0; /* Replace with your desired color */
+}
+.modal-body {
+  padding-bottom:0px !important;
+}
+.title {
+  font-weight: bold;
+}
+.accent {
+  color:darkblue;
+}
+.alert {
+  color:darkred;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1em;
+  vertical-align: middle;
+  padding-left:10px;
+}
+.inner-div {
+    width: 100%;
+    padding: 40px; /* Example padding */
+    box-sizing: border-box; /* Crucial for containment */
+    position: relative; 
+    border: none !important;
+}
+.level {
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom:5px;
+}
+.levelM {
+  background-color: #e6e6e6;
+}
+.level0 {
+  background-color: #ffffff;
+}
+.level1 {
+  background-color: #cce5ff;
+}
+.level2 {
+  background-color: #ccffff;
+}
+.level3 {
+  background-color: #ffffcc;
+}
+.level4 {
+  background-color: #ffe6ff;
+}
+.level5 {
+  background-color: #fcd4ac;
+}
+.level6 {
+  background-color: #cffaec;
+}
+.level7 {
+  background-color: #d4d4d4;
+}
+.level8 {
+  background-color: #ffd6fc;
+}
+.level9 {
+  background-color:#cae2fc;
 }
