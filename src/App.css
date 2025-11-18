@@ -69,9 +69,6 @@ p.italics {
 .title {
   font-weight: bold;
 }
-.accent {
-  color:darkblue;
-}
 .alert {
   color:darkred;
   font-weight: normal;
@@ -79,50 +76,4 @@ p.italics {
   font-size: 1em;
   vertical-align: middle;
   padding-left:10px;
-}
-.inner-div {
-    width: 100%;
-    padding: 40px; /* Example padding */
-    box-sizing: border-box; /* Crucial for containment */
-    position: relative; 
-    border: none !important;
-}
-.level {
-  padding-left: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-bottom:5px;
-}
-.levelM {
-  background-color: #e6e6e6;
-}
-.level0 {
-  background-color: #ffffff;
-}
-.level1 {
-  background-color: #cce5ff;
-}
-.level2 {
-  background-color: #ccffff;
-}
-.level3 {
-  background-color: #ffffcc;
-}
-.level4 {
-  background-color: #ffe6ff;
-}
-.level5 {
-  background-color: #fcd4ac;
-}
-.level6 {
-  background-color: #cffaec;
-}
-.level7 {
-  background-color: #d4d4d4;
-}
-.level8 {
-  background-color: #ffd6fc;
-}
-.level9 {
-  background-color:#cae2fc;
 }
