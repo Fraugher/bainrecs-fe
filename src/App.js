@@ -3,10 +3,9 @@
     import './App.css';
     
     function App() {
-      const verboseOn=false;
       return (
         <div className="App">
-          <SearchReviews  />
+          <SearchReviews />
         </div>
       );
     }
