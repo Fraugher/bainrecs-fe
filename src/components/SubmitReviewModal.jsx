@@ -36,7 +36,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
       let url = 'https://fraugher.pythonanywhere.com/reviews/submit-review'
       const response = await fetch(url, {
         method: 'POST',
-        headers: {Authorization: PYTHONANYWHERE_API_KEY },
+        headers: `Token ${PYTHONANYWHERE_API_KEY}`,
         body: formPayload
       });
 
