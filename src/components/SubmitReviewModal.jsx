@@ -13,6 +13,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
+  const PYTHONANYWHERE_API_KEY = process.env.REACT_APP_PYTHONANYWHERE_API_KEY;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -32,20 +33,10 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
       formPayload.append('review_title', formData.reviewTitle);
       formPayload.append('review_text', formData.reviewText);
       formPayload.append('review_rating', formData.reviewRating);
-    } catch (err) {
-      setError('An error creating payload');
-      console.error(err);
-    }
-    try {
-      const formPayload = new FormData();
-      formPayload.append('google_maps_id', restaurant.google_maps_id);
-      formPayload.append('author_name', formData.authorName);
-      formPayload.append('review_title', formData.reviewTitle);
-      formPayload.append('review_text', formData.reviewText);
-      formPayload.append('review_rating', formData.reviewRating);
       let url = 'https://fraugher.pythonanywhere.com/reviews/submit-review'
       const response = await fetch(url, {
         method: 'POST',
+        headers: {Authorization: PYTHONANYWHERE_API_KEY },
         body: formPayload
       });
 
