@@ -30,7 +30,8 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
       const formPayload = new FormData();
       formPayload.append('google_maps_id', restaurant.google_maps_id);
       formPayload.append('author_name', formData.authorName);
-      formPayload.append('review_title', formData.reviewTitle);
+      formPayload.append('place_name', restaurant.place_name);
+      formPayload.append('author_name', formData.authorName);
       formPayload.append('review_text', formData.reviewText);
       formPayload.append('review_rating', formData.reviewRating);
       let url = 'https://fraugher.pythonanywhere.com/reviews/submit-review'
