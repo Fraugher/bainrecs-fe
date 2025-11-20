@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# Bainrecs - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React-based user interface for restaurant review search and submission.
+
+## Overview
+
+Simple web interface providing:
+- **Search & Filter** - Find restaurants by location, rating, and type
+- **Submit Reviews** - Bain users can submit restaurant reviews
+
+## Tech Stack
+
+- **Framework:** React 19.2.0
+- **UI Library:** React Bootstrap 2.10.10
+- **Build Tool:** Create React App
+- **Web Server:** nginx (in Docker)
+
+## Current Deployment
+
+Currently deployed on **Netlify** at:
+- Production: [Your Netlify URL]
+
+## Local Development Setup
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Fraugher/bainrecs-fe.git
+cd bainrecs-fe
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Configure environment (create `.env.development`):
+```
+REACT_APP_BACKEND_API_URL=http://localhost:5000
+```
+
+4. Start development server:
+```bash
+npm start
+```
+
+The app will open at `http://localhost:3000`
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` - Run development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
 
-### `npm start`
+## Docker Deployment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Build the Image
+```bash
+docker build -t bainrecs-frontend:latest .
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Run the Container
+```bash
+docker run -d -p 3000:80 --name bainrecs-frontend bainrecs-frontend:latest
+```
 
-### `npm test`
+The app will be available at `http://localhost:3000`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+See [DOCKER.md](DOCKER.md) for detailed Docker instructions.
 
-### `npm run build`
+## Environment Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app uses different `.env` files for different environments:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `.env.development` - Local development
+- `.env.production` - Production build (Netlify)
+- `.env.docker` - Docker builds
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Each contains:
+```
+REACT_APP_BACKEND_API_URL=<backend-url>
+```
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+bainrecs-fe/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # React components
+│   ├── SearchReviews.jsx
+│   ├── SubmitReview.Modal.jsx
+│   └── App.js
+├── package.json
+├── Dockerfile
+├── nginx.conf           # nginx configuration for Docker
+└── .dockerignore
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Create a feature branch
+2. Make your changes
+3. Test locally
+4. Submit a pull request

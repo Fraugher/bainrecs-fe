@@ -14,6 +14,8 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
   const [success, setSuccess] = useState(false);
 
   const PYTHONANYWHERE_API_KEY = process.env.REACT_APP_PYTHONANYWHERE_API_KEY;
+  const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL;
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -34,7 +36,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
       formPayload.append('author_name', formData.authorName);
       formPayload.append('review_text', formData.reviewText);
       formPayload.append('review_rating', formData.reviewRating);
-      let url = 'https://fraugher.pythonanywhere.com/reviews/submit-review'
+      let url = `${API_BASE_URL}/reviews/submit-review`;
       const response = await fetch(url, {
         method: 'POST',
         headers: {
