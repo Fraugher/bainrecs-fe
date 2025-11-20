@@ -28,3 +28,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
+
+#build it
+#docker build -t bainrecs-frontend:latest .
+#
+#run it
+#docker run -d -p 3000:80 --name bainrecs-frontend bainrecs-frontend:latest

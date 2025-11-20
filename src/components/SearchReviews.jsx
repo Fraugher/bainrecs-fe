@@ -16,6 +16,8 @@ const SearchReviews = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
+  const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL;
+
   const restaurantTypes = [
     { value: 'all', label: 'All Types' },
     { value: 'american', label: 'American' },
@@ -63,9 +65,9 @@ const SearchReviews = () => {
 
     try {
       if (nameKeyword.trim()) {
-        url = `https://fraugher.pythonanywhere.com/reviews/search_ratings?keyword=${encodeURIComponent(nameKeyword)}&restaurant_type=${restaurantType}`;
+        url = `${API_BASE_URL}/reviews/search_ratings?keyword=${encodeURIComponent(nameKeyword)}&restaurant_type=${restaurantType}`;
       } else {
-        url = `https://fraugher.pythonanywhere.com/reviews/ratings?restaurant_type=${restaurantType}`;
+        url = `${API_BASE_URL}/reviews/ratings?restaurant_type=${restaurantType}`;
       }
 
       const response = await fetch(url);
@@ -110,7 +112,7 @@ const SearchReviews = () => {
     // Load reviews
     setLoadingReviews(prev => ({ ...prev, [googleMapsId]: true }));
 
-    const url = `https://fraugher.pythonanywhere.com/reviews/reviews/${googleMapsId}`;
+    const url = `${API_BASE_URL}/reviews/reviews/${googleMapsId}`;
     try {
       const response = await fetch(url);
       const data = await response.json();

@@ -1,11 +1,11 @@
-# Bainrecs - Frontend
+# Bainrecs - Bain Restaurant Recommendation Frontend
 
 React-based user interface for restaurant review search and submission.
 
 ## Overview
 
 Simple web interface providing:
-- **Search & Filter** - Find restaurants by location, rating, and type
+- **Search & Filter** - Find restaurankeyword and type
 - **Submit Reviews** - Bain users can submit restaurant reviews
 
 ## Tech Stack
@@ -18,7 +18,7 @@ Simple web interface providing:
 ## Current Deployment
 
 Currently deployed on **Netlify** at:
-- Production: [Your Netlify URL]
+- Production: [(https://bainrecs-fe.netlify.app/)]
 
 ## Local Development Setup
 
