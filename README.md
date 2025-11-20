@@ -18,7 +18,7 @@ Simple web interface providing:
 ## Current Deployment
 
 Currently deployed on **Netlify** at:
-- Production: [(https://bainrecs-fe.netlify.app/)]
+- Production: https://bainrecs-fe.netlify.app/
 
 ## Local Development Setup
 
