@@ -101,10 +101,3 @@ bainrecs-fe/
 ├── nginx.conf           # nginx configuration for Docker
 └── .dockerignore
 ```
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Test locally
-4. Submit a pull request
