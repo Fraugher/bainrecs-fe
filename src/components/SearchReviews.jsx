@@ -45,26 +45,23 @@ const SearchReviews = () => {
     }
   };
   const handleCloseReviewModal = () => {
-    const restaurantToExpand = selectedRestaurant?.google_maps_id;
-    const shouldExpand = reviewWasSubmitted;
-    
     setShowReviewModal(false);
+    const shouldExpand = reviewWasSubmitted;
+    const restaurantToExpand = selectedRestaurant?.google_maps_id;
+    
     setSelectedRestaurant(null);
     setReviewWasSubmitted(false);
     
-    if (shouldExpand && restaurantToExpand) {
+    if (shouldExpand) {
+      // Just re-run the entire search
       setTimeout(() => {
-        // Clear the cache for this restaurant
-        setRestaurantReviews(prev => {
-          const updated = { ...prev };
-          delete updated[restaurantToExpand];
-          return updated;
+        handleSearch().then(() => {
+          if (restaurantToExpand) {
+            setTimeout(() => {
+              handleRestaurantClick(restaurantToExpand, true);
+            }, 100);
+          }
         });
-        
-        // Force reload with the flag
-        setTimeout(() => {
-          handleRestaurantClick(restaurantToExpand, true);  // Pass true to force reload
-        }, 50);  // Small delay to ensure state update completes
       }, 300);
     }
   };
