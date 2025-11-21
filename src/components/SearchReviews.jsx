@@ -16,7 +16,6 @@ const SearchReviews = () => {
   const [loadingReviews, setLoadingReviews] = useState({});
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const [reviewWasSubmitted, setReviewWasSubmitted] = useState(false)
 
   const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL;
 
