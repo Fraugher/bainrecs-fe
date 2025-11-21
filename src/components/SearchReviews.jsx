@@ -40,11 +40,14 @@ const SearchReviews = () => {
   };
 
   const handleReviewSubmitted = () => {
+    console.log("handleReviewSubmitted called!");
     if (selectedRestaurant) {
       setReviewWasSubmitted(true);  // Mark that a review was submitted
+      console.log("Set reviewWasSubmitted to true");
     }
   };
   const handleCloseReviewModal = () => {
+    console.log("handleCloseReviewModal - reviewWasSubmitted:", reviewWasSubmitted);
     setShowReviewModal(false);
     const shouldExpand = reviewWasSubmitted;
     const restaurantToExpand = selectedRestaurant?.google_maps_id;
@@ -52,7 +55,6 @@ const SearchReviews = () => {
     setSelectedRestaurant(null);
     setReviewWasSubmitted(false);
     
-    alert("SHOULD EXPAND = " +shouldExpand + ": " + restaurantToExpand );
     if (shouldExpand) {
       // Just re-run the entire search
       setTimeout(() => {
