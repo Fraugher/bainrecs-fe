@@ -49,6 +49,9 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
 
       if (data.success) {
         setSuccess(true);
+        if (onReviewSubmitted) {
+          onReviewSubmitted();
+        }
         // Reset form after 2 seconds and close modal
         setTimeout(() => {
           handleClose();

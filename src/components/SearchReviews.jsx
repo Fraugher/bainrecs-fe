@@ -38,6 +38,19 @@ const SearchReviews = () => {
     setShowReviewModal(true);
   };
 
+  const handleReviewSubmitted = () => {
+    // Clear the cached reviews for this restaurant so they reload
+    if (selectedRestaurant) {
+      setRestaurantReviews(prev => {
+        const updated = { ...prev };
+        delete updated[selectedRestaurant.google_maps_id];
+        return updated;
+      });
+      
+      // Re-run the search to refresh ratings
+      handleSearch();
+    }
+  };
   const handleCloseReviewModal = () => {
     setShowReviewModal(false);
     setSelectedRestaurant(null);
@@ -362,6 +375,7 @@ const SearchReviews = () => {
         show={showReviewModal}
         onHide={handleCloseReviewModal}
         restaurant={selectedRestaurant}
+        onReviewSubmitted={handleReviewSubmitted}
       />
     </Container>
   );
