@@ -15,6 +15,7 @@ const SearchReviews = () => {
   const [loadingReviews, setLoadingReviews] = useState({});
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const [reviewWasSubmitted, setReviewWasSubmitted] = useState(false)
 
   const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL;
 
@@ -39,23 +40,31 @@ const SearchReviews = () => {
   };
 
   const handleReviewSubmitted = () => {
-    // Clear the cached reviews for this restaurant so they reload
+    // Clear cached reviews for this restaurant so they reload fresh
     if (selectedRestaurant) {
       setRestaurantReviews(prev => {
         const updated = { ...prev };
         delete updated[selectedRestaurant.google_maps_id];
         return updated;
       });
-      
-      // Re-run the search to refresh ratings
-      handleSearch();
+      setReviewWasSubmitted(true);  // Mark that a review was submitted
     }
   };
   const handleCloseReviewModal = () => {
+    const restaurantToExpand = selectedRestaurant?.google_maps_id;
+    const shouldExpand = reviewWasSubmitted;  // Only if review was submitted
+    
     setShowReviewModal(false);
     setSelectedRestaurant(null);
+    setReviewWasSubmitted(false);  // Reset flag
+    
+    // Only expand if review was submitted
+    if (shouldExpand && restaurantToExpand) {
+      setTimeout(() => {
+        handleRestaurantClick(restaurantToExpand);
+      }, 300);
+    }
   };
-
 
   const getProviderLogo= (provider) => {
     const logos = {
