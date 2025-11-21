@@ -40,13 +40,7 @@ const SearchReviews = () => {
   };
 
   const handleReviewSubmitted = () => {
-    // Clear cached reviews for this restaurant so they reload fresh
     if (selectedRestaurant) {
-      setRestaurantReviews(prev => {
-        const updated = { ...prev };
-        delete updated[selectedRestaurant.google_maps_id];
-        return updated;
-      });
       setReviewWasSubmitted(true);  // Mark that a review was submitted
     }
   };
