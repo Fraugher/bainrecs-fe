@@ -60,7 +60,18 @@ const SearchReviews = () => {
     
     // Only expand if review was submitted
     if (shouldExpand && restaurantToExpand) {
+      // DON'T clear the cache - let handleRestaurantClick do a fresh fetch
+      // Remove the setRestaurantReviews from handleReviewSubmitted
+      
       setTimeout(() => {
+        // Force a fresh load by clearing cache RIGHT before fetching
+        setRestaurantReviews(prev => {
+          const updated = { ...prev };
+          delete updated[restaurantToExpand];
+          return updated;
+        });
+        
+        // Now immediately fetch - since cache is empty, it will load fresh
         handleRestaurantClick(restaurantToExpand);
       }, 300);
     }
