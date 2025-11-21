@@ -164,8 +164,9 @@ const SearchReviews = () => {
         <Card.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Name Search:</Form.Label>
+              <Form.Label htmlFor="name-keyword-input">Name Search:</Form.Label>
               <Form.Control
+                id="name-keyword-input"
                 type="text"
                 placeholder="Enter name keywords"
                 value={nameKeyword}
@@ -175,8 +176,9 @@ const SearchReviews = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Type Search:</Form.Label>
+              <Form.Label htmlFor="restaurant-type-select">Type Search:</Form.Label>
               <Form.Select
+                id="restaurant-type-select"
                 value={restaurantType}
                 onChange={(e) => setRestaurantType(e.target.value)}
               >
@@ -187,9 +189,9 @@ const SearchReviews = () => {
                 ))}
               </Form.Select>
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Check
+                id="show-bain-checkbox"
                 type="checkbox"
                 label="Show Bain Reviews"
                 checked={showBainRatings}

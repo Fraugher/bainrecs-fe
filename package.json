@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --verbose",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,15 +40,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "jest": "^27.5.1"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest"
-    },
-    "testEnvironment": "jsdom"
+    "@testing-library/react": "^16.3.0"
   }
 }
