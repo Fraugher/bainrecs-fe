@@ -54,7 +54,7 @@ const SearchReviews = () => {
     const restaurantToExpand = selectedRestaurant?.google_maps_id;
     
     setSelectedRestaurant(null);
-    setReviewWasSubmitted(false);
+    reviewWasSubmittedRef.current = false;  // Reset ref
     
     if (shouldExpand) {
       // Just re-run the entire search
