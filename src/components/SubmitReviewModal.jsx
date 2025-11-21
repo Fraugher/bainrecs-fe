@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button, Form, Alert, Spinner } from 'react-bootstrap';
 
-const SubmitReviewModal = ({ show, onHide, restaurant }) => {
+const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
   const [formData, setFormData] = useState({
     authorName: '',
     reviewTitle: '',
