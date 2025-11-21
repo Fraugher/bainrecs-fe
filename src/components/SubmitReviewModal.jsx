@@ -33,7 +33,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant }) => {
       formPayload.append('google_maps_id', restaurant.google_maps_id);
       formPayload.append('author_name', formData.authorName);
       formPayload.append('place_name', restaurant.place_name);
-      formPayload.append('review_title', formData.review_title);
+      formPayload.append('review_title', formData.reviewTitle);
       formPayload.append('review_text', formData.reviewText);
       formPayload.append('review_rating', formData.reviewRating);
       let url = `${API_BASE_URL}/reviews/submit-review`;
