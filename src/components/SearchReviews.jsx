@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SubmitReviewModal from './SubmitReviewModal';  
 
 const SearchReviews = () => {
+  const reviewWasSubmittedRef = useRef(false); 
   const [nameKeyword, setNameKeyword] = useState('');
   const [restaurantType, setRestaurantType] = useState('all');
   const [showBainRatings, setShowBainRatings] = useState(true);
@@ -43,14 +44,15 @@ const SearchReviews = () => {
   const handleReviewSubmitted = () => {
     console.log("handleReviewSubmitted called!");
     if (selectedRestaurant) {
-      setReviewWasSubmitted(true);  // Mark that a review was submitted
+      reviewWasSubmittedRef.current = true;  // Set ref (happens immediately)
       console.log("Set reviewWasSubmitted to true");
     }
   };
   const handleCloseReviewModal = () => {
-    console.log("handleCloseReviewModal - reviewWasSubmitted:", reviewWasSubmitted);
+    const shouldExpand = reviewWasSubmittedRef.current;  // Read ref
+    console.log("handleCloseReviewModal - reviewWasSubmitted:", shouldExpand);
+
     setShowReviewModal(false);
-    const shouldExpand = reviewWasSubmitted;
     const restaurantToExpand = selectedRestaurant?.google_maps_id;
     
     setSelectedRestaurant(null);
