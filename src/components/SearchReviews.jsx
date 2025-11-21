@@ -46,31 +46,28 @@ const SearchReviews = () => {
   };
   const handleCloseReviewModal = () => {
     const restaurantToExpand = selectedRestaurant?.google_maps_id;
-    const shouldExpand = reviewWasSubmitted;  // Only if review was submitted
+    const shouldExpand = reviewWasSubmitted;
     
     setShowReviewModal(false);
     setSelectedRestaurant(null);
-    setReviewWasSubmitted(false);  // Reset flag
+    setReviewWasSubmitted(false);
     
-    // Only expand if review was submitted
     if (shouldExpand && restaurantToExpand) {
-      // DON'T clear the cache - let handleRestaurantClick do a fresh fetch
-      // Remove the setRestaurantReviews from handleReviewSubmitted
-      
       setTimeout(() => {
-        // Force a fresh load by clearing cache RIGHT before fetching
+        // Clear the cache for this restaurant
         setRestaurantReviews(prev => {
           const updated = { ...prev };
           delete updated[restaurantToExpand];
           return updated;
         });
         
-        // Now immediately fetch - since cache is empty, it will load fresh
-        handleRestaurantClick(restaurantToExpand);
+        // Force reload with the flag
+        setTimeout(() => {
+          handleRestaurantClick(restaurantToExpand, true);  // Pass true to force reload
+        }, 50);  // Small delay to ensure state update completes
       }, 300);
     }
   };
-
   const getProviderLogo= (provider) => {
     const logos = {
       'google-maps': '/logos/google.png',
@@ -123,15 +120,15 @@ const SearchReviews = () => {
     setRestaurantReviews({});
   };
 
-  const handleRestaurantClick = async (googleMapsId) => {
+  const handleRestaurantClick = async (googleMapsId, forceReload = false) => {
     // If clicking on already expanded restaurant, just collapse it
-    if (expandedRestaurant === googleMapsId) {
+    if (expandedRestaurant === googleMapsId && !forceReload) {
       setExpandedRestaurant(null);
       return;
     }
 
-    // If reviews already loaded, just expand
-    if (restaurantReviews[googleMapsId]) {
+    // If reviews already loaded and not forcing reload, just expand
+    if (restaurantReviews[googleMapsId] && !forceReload) {
       setExpandedRestaurant(googleMapsId);
       return;
     }
@@ -173,7 +170,6 @@ const SearchReviews = () => {
       setLoadingReviews(prev => ({ ...prev, [googleMapsId]: false }));
     }
   };
-
   return (
     <Container className="py-4">
       {/* Header */}
