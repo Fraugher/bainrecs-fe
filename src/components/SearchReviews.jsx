@@ -52,6 +52,7 @@ const SearchReviews = () => {
     setSelectedRestaurant(null);
     setReviewWasSubmitted(false);
     
+    alert("SHOULD EXPAND = " +shouldExpand + ": " + restaurantToExpand );
     if (shouldExpand) {
       // Just re-run the entire search
       setTimeout(() => {
