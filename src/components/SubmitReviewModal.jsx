@@ -52,10 +52,10 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
         if (onReviewSubmitted) {
           onReviewSubmitted();
         }
-        // Reset form after 2 seconds and close modal
+        // Reset form with slight delay to see success message
         setTimeout(() => {
           handleClose();
-        }, 2000);
+        }, 500);
       } else {
         setError(data.error || 'Failed to submit review');
       }
@@ -123,24 +123,29 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
         <Modal.Title>
           <div>
             Bain Review of {restaurant.place_name}
-            <div className="text-muted small fw-normal">{restaurant.place_address}</div>
+            <div className="mt-2">
+            {/* Show alerts OR default to the address to start */}
+            {error && (
+              <Alert variant="danger" dismissible onClose={() => setError(null)} className="mt-2 mb-0">
+                {error}
+              </Alert>
+            )}
+            
+            {success && (
+              <Alert variant="success" className="mt-2 mb-0">
+                Review submitted successfully!
+              </Alert>
+            )}
+            
+            {!error && !success && (
+              <div className="text-muted small fw-normal">{restaurant.place_address}</div>
+            )}
+            </div>
           </div>
         </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        {error && (
-          <Alert variant="danger" dismissible onClose={() => setError(null)}>
-            {error}
-          </Alert>
-        )}
-
-        {success && (
-          <Alert variant="success">
-            Review submitted successfully!
-          </Alert>
-        )}
-
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>
