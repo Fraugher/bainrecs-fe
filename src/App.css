@@ -1,0 +1,79 @@
+.App {
+  text-align: left;
+  /* background-image: url('beta_bg.png'); 
+  background-repeat: repeat; */
+}
+p.italics {
+  font-style: italic;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.provider-logo {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+  margin-bottom: -2px; /* fine-tune if needed */
+}
+.provider {
+  vertical-align: text-top;
+  padding-bottom: 5px; /* fine-tune if needed */
+  margin-top: -2px;
+}
+.review-link {
+  vertical-align: text-middle;
+  margin-top: -7px;
+  color: darkred;
+}
+.modal-backdrop {
+  background-color: lightgray; /* Replace with your desired color */
+}
+.modal-content {
+  background-color: #faeef0; /* Replace with your desired color */
+}
+.modal-body {
+  padding-bottom:0px !important;
+}
+.title {
+  font-weight: bold;
+}
+.alert {
+  color:darkred;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1em;
+  vertical-align: middle;
+  padding-left:10px;
+}

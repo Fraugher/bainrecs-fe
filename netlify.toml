@@ -1,0 +1,5 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  ignore = "find . -type d -name '__tests__' -exec rm -rf {} +"  #remove tests from production deploy
+
