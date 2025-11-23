@@ -123,7 +123,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
         <Modal.Title>
           <div>
             Bain Review of {restaurant.place_name}
-            <div className="mt-2">
+            <div className="mt-2 smaller-font">
             {/* Show alerts OR default to the address to start */}
             {error && (
               <Alert variant="danger" dismissible onClose={() => setError(null)} className="mt-2 mb-0">

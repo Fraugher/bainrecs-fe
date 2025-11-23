@@ -1,12 +1,15 @@
-# Bainrecs - Bain Restaurant Recommendation Frontend
+# Bain Restaurant Recommendation Frontend
 
 React-based user interface for restaurant review search and submission.
 
 ## Overview
 
-Simple web interface providing:
-- **Search & Filter** - Find restaurankeyword and type
-- **Submit Reviews** - Bain users can submit restaurant reviews
+Web interface providing:
+- **Search & Filter** - Find restaurants by name, keyword, and cuisine type
+- **View Reviews** - Browse reviews from multiple sources (Google, TripAdvisor, Yelp)
+- **Bain Reviews** - Toggle to show/prioritize internal Bain staff reviews
+- **Submit Reviews** - Bain users can submit restaurant reviews with star ratings
+- **Ratings Display** - Compare public ratings vs. Bain-specific ratings
 
 ## Tech Stack
 
@@ -14,11 +17,6 @@ Simple web interface providing:
 - **UI Library:** React Bootstrap 2.10.10
 - **Build Tool:** Create React App
 - **Web Server:** nginx (in Docker)
-
-## Current Deployment
-
-Currently deployed on **Netlify** at:
-- Production: https://bainrecs-fe.netlify.app/
 
 ## Local Development Setup
 
@@ -29,27 +27,35 @@ Currently deployed on **Netlify** at:
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/Fraugher/bainrecs-fe.git
-cd bainrecs-fe
-```
+   ```bash
+   git clone https://github.com/Fraugher/bainrecs-fe.git
+   cd bainrecs-fe
+   ```
 
 2. Install dependencies:
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-3. Configure environment (create `.env.development`):
-```
-REACT_APP_BACKEND_API_URL=http://localhost:5000
-```
+3. Configure environment variables:
+   
+   The app requires environment variables:
+    ```env
+    REACT_APP_BACKEND_API_URL=<backend-url>
+    REACT_APP_PYTHONANYWHERE_API_KEY=<api-key>
+    ```
+
+   Create the appropriate `.env` file for your environment:
+    - `.env.development` - Local development
+    - `.env.production` - Production build (Netlify)
+    - `.env.docker` - Docker builds
 
 4. Start development server:
-```bash
-npm start
-```
-
-The app will open at `http://localhost:3000`
+   ```bash
+   npm start
+   ```
+   
+   The app will open at `http://localhost:3000`
 
 ## Available Scripts
 
@@ -73,31 +79,45 @@ The app will be available at `http://localhost:3000`
 
 See [DOCKER.md](DOCKER.md) for detailed Docker instructions.
 
-## Environment Configuration
-
-The app uses different `.env` files for different environments:
-
-- `.env.development` - Local development
-- `.env.production` - Production build (Netlify)
-- `.env.docker` - Docker builds
-
-Each contains:
-```
-REACT_APP_BACKEND_API_URL=<backend-url>
-```
-
 ## Project Structure
 
 ```
 bainrecs-fe/
 ├── public/              # Static assets
+│   ├── index.html       # Main HTML template
+│   └── logos/           # Provider logos (Google, TripAdvisor, etc.)
 ├── src/
-│   ├── components/      # React components
-│   ├── SearchReviews.jsx
-│   ├── SubmitReview.Modal.jsx
-│   └── App.js
+│   ├── components/
+│   │   ├── SearchReviews.jsx
+│   │   └── SubmitReviewModal.jsx
+│   ├── App.js
+│   └── index.js
 ├── package.json
 ├── Dockerfile
 ├── nginx.conf           # nginx configuration for Docker
-└── .dockerignore
+├── .dockerignore
+└── .env.development     # Environment config files
 ```
+
+## Features
+
+### Search & Filter
+- Search restaurants by name keywords
+- Filter by cuisine type (Italian, Chinese, Japanese, etc.)
+- Toggle Bain reviews on/off
+
+### Restaurant Details
+- Expandable cards showing full review history
+- Review source provider identification for each review source
+- Separate display of public vs. Bain ratings
+- Review counts for each rating type
+
+### Submit Reviews
+- Star rating interface (1-5 stars)
+- Title and detailed review text
+- Optional author identification
+- Auto-refresh after submission
+
+## Project Link: 
+
+[https://github.com/Fraugher/bainrecs-fe](https://github.com/Fraugher/bainrecs-fe)

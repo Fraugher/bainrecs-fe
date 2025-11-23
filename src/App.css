@@ -69,6 +69,9 @@ p.italics {
 .title {
   font-weight: bold;
 }
+.smaller-font{
+  font-size: 0.8em; 
+}
 .alert {
   color:darkred;
   font-weight: normal;
