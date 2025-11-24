@@ -55,7 +55,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
         // Reset form with slight delay to see success message
         setTimeout(() => {
           handleClose();
-        }, 500);
+        }, 800);
       } else {
         setError(data.error || 'Failed to submit review');
       }
@@ -147,7 +147,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
 
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>
               <strong>Your Name</strong>, Location and Title <span className="text-muted">(<Form.Text className="text-muted">
               Optional - helps others understand your perspective
@@ -163,7 +163,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
 
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <div className="d-flex align-items-center align-items-middle gap-3">
               <Form.Label>Rating <span className="text-danger">*</span>
               </Form.Label>
@@ -185,7 +185,7 @@ const SubmitReviewModal = ({ show, onHide, restaurant, onReviewSubmitted }) => {
 
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Review</Form.Label>
             <Form.Control
               as="textarea"

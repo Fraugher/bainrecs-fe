@@ -19,6 +19,7 @@ const SearchReviews = () => {
 
   const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL;
 
+  // these next two could be moved out to a config
   const restaurantTypes = [
     { value: 'all', label: 'All Types' },
     { value: 'american', label: 'American' },
@@ -33,6 +34,16 @@ const SearchReviews = () => {
     { value: 'pizza', label: 'Pizza' },
     { value: 'fusion', label: 'Fusion' }
   ];
+  const getProviderLogo= (provider) => {
+    const logos = {
+      'google-maps': '/logos/google.png',
+      'facebook': '/logos/facebook.png',
+      'tripadvisor': '/logos/tripadvisor.png',
+      'Bain': '/logos/bain.png',
+      'Yelp': '/logos/yelp.png'
+    };
+    return logos[provider];
+  };
 
   const handleOpenReviewModal = (restaurant) => {
     setSelectedRestaurant(restaurant);
@@ -40,24 +51,22 @@ const SearchReviews = () => {
   };
 
   const handleReviewSubmitted = () => {
-    console.log("handleReviewSubmitted called!");
     if (selectedRestaurant) {
-      reviewWasSubmittedRef.current = true;  // Set ref (happens immediately)
-      console.log("Set reviewWasSubmitted to true");
+      reviewWasSubmittedRef.current = true; 
     }
   };
   const handleCloseReviewModal = () => {
-    const shouldExpand = reviewWasSubmittedRef.current;  // Read ref
-    console.log("handleCloseReviewModal - reviewWasSubmitted:", shouldExpand);
+    const shouldExpand = reviewWasSubmittedRef.current; // only expand if close was a submittal
 
     setShowReviewModal(false);
     const restaurantToExpand = selectedRestaurant?.google_maps_id;
     
+    // reset for next modal use
     setSelectedRestaurant(null);
-    reviewWasSubmittedRef.current = false;  // Reset ref
+    reviewWasSubmittedRef.current = false;
     
     if (shouldExpand) {
-      // Just re-run the entire search
+      // Just re-run the entire search, show the new review by expanding the restaurant
       setTimeout(() => {
         handleSearch().then(() => {
           if (restaurantToExpand) {
@@ -68,16 +77,6 @@ const SearchReviews = () => {
         });
       }, 300);
     }
-  };
-  const getProviderLogo= (provider) => {
-    const logos = {
-      'google-maps': '/logos/google.png',
-      'facebook': '/logos/facebook.png',
-      'tripadvisor': '/logos/tripadvisor.png',
-      'Bain': '/logos/bain.png',
-      'Yelp': '/logos/yelp.png'
-    };
-    return logos[provider];
   };
 
   const handleSearch = async () => {
@@ -101,7 +100,7 @@ const SearchReviews = () => {
       if (data.success) {
         setSearchResults(data.data);
       } else {
-        setError(data.error || 'Failed to fetch results');
+        setError(data.error || 'Failed to fetch search results');
       }
     } catch (err) {
       setError('An error occurred while searching with url: ' + url);
@@ -119,6 +118,7 @@ const SearchReviews = () => {
     setError(null);
     setExpandedRestaurant(null);
     setRestaurantReviews({});
+    reviewWasSubmittedRef.current=false; 
   };
 
   const handleRestaurantClick = async (googleMapsId, forceReload = false) => {
@@ -182,7 +182,6 @@ const SearchReviews = () => {
           restaurant type or name.
         </p>
       </div>
-
       {/* Search Form */}
       <Card className="mb-4">
         <Card.Body>
@@ -198,7 +197,6 @@ const SearchReviews = () => {
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label htmlFor="restaurant-type-select">Type Search:</Form.Label>
               <Form.Select
@@ -222,11 +220,9 @@ const SearchReviews = () => {
                 onChange={(e) => setShowBainRatings(e.target.checked)}
               />
             </Form.Group>
-
             <p className="text-muted small fst-italic">
               To show all restaurants, press search with empty options above
             </p>
-
             <div className="d-flex gap-2">
               <Button
                 variant="primary"
@@ -379,7 +375,7 @@ const SearchReviews = () => {
       {/* No Results */}
       {!loading && searchResults.length === 0 && !error && (
         <div className="text-center text-muted py-5">
-          <p>No results yet. Use the search form above to find restaurants.</p>
+          <p>No results are returned by your selections. Use the search form above to find restaurants.</p>
         </div>
       )}
       <SubmitReviewModal
